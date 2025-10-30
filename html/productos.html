@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<h1>Agregar productos</h1>
+
+<div class="contenedor-principal">
+    <div class="contenedor-formulario">
+        <form id="formularioProductos">
+            <label for="txtSerie">NUM. SERIE:</label> <input type="text" id="txtNumSerie" name="txtNumSerie">
+            <label for="txtMarca">Marca AUTOMOVIL:</label> <input type="text" id="txtMarca" name="txtMarca">
+            <label for="txtModelo">Modelo Automovil:</label> <input type="text" name="txtModelo" id="txtModelo">
+            <label for="txtDescripcion">Descripcion Automovil:</label> <input type="text" name="txtDescripcion" id="txtDescripcion">
+            <label for="txtUrl">URL Imagen Automovil:</label><input type="text" id="txtUrl" name="txtUrl">
+
+            <p id="mensaje" style="text-align: center ; color: white;"></p>
+            <button type="button" id="btnAgregar">Agregar</button>
+            <button type="button" id="btnBuscar">Buscar</button>
+            <button type="button" id="btnActualizar">Actualizar</button>
+            <button type="button" id="btnBorrar">Borrar</button>
+            <button type="reset">Limpiar Formulario</button>
+        </form>
+    </div>
+
+    <div class="contenedor-tabla">
+        <table id="tablaProductos">
+            <thead>
+                <tr>
+                    <th>Serie</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<body>
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
