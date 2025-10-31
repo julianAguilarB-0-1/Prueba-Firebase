@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 
+<nav class="navbar">
+    <ul>
+        <li><a href="../index.html">INICIO</a></li>
+        <li><a href="../html/automoviles.html">Automoviles</a></li>
+    </ul>
+</nav>
+
 <h1>Agregar productos</h1>
 
 <div class="contenedor-principal">
@@ -19,6 +26,8 @@
             <label for="txtDescripcion">Descripcion Automovil:</label> <input type="text" name="txtDescripcion"
                 id="txtDescripcion">
             <label for="txtUrl">URL Imagen Automovil:</label><input type="text" id="txtUrl" name="txtUrl">
+            <input class="subirArchivo" type="file" id="imageInput"> <button type="button"
+                id="uploadButton">SubirImagen</button>
 
             <p id="mensaje" style="text-align: center ; color: white;"></p>
             <button type="button" id="btnAgregar">Agregar</button>

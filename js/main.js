@@ -1,4 +1,3 @@
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -53,7 +52,6 @@ const btnAgregar = document.getElementById('btnAgregar');
 btnAgregar.addEventListener('click', insertarProducto);
 
 function insertarProducto() {
-    alert("Ingrese a add db");
     leerInputs();
     //validar
     if (numSerie === "" || marca === "" || modelo === "" || descripcion === "") {
@@ -72,9 +70,12 @@ function insertarProducto() {
             modelo: modelo,
             descripcion: descripcion,
             urlImg: urlImg
+            
         }
     ).then(() => {
         alert("Se agrego con exito");
+        Listarproductos();
+        limpiarInputs();
     }).catch((error) => {
         alert("Ocurrio un error");
     });
@@ -181,7 +182,6 @@ function actualizarAutomovil() {
     }).catch((error) => {
         mostrarMensaje("Ocurrio un error: " + error);
     });
-    Listarproductos();
 }
 
 const btnActualizar = document.getElementById('btnActualizar');
@@ -215,3 +215,48 @@ function eliminarAutomovil() {
 
 const btnBorrar = document.getElementById('btnBorrar');
 btnBorrar.addEventListener('click', eliminarAutomovil);
+
+// ------------------prueba de la imagen
+// cuenta cloudinary
+const cloudName = "dk1sj8yj3";
+const uploadPreset = "Automoviles";
+
+//constantes
+const imageInput = document.getElementById('imageInput');
+const uploadButton = document.getElementById('uploadButton');
+
+//evento
+uploadButton.addEventListener('click', async (e) => {
+    e.preventDefault(); // evita que el formulario se recargue
+    e.stopPropagation();
+
+    const file = imageInput.files[0];
+
+    if (!file) {
+        alert("Selecciona una imagen antes de subir.");
+        return;
+    }
+
+    // subir archivo
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: "POST",
+            body: formData
+        });
+        const data = await response.json();
+        if (data.secure_url) {
+            document.getElementById("txtUrl").value = data.secure_url;
+            alert("Imagen subida correctamente");
+        } else {
+            alert("Error al subir la imagen");
+            console.error(data);
+        }
+    } catch (error) {
+        console.error("Error al subir a Cloudinary:", error);
+        alert("Ocurrió un error al subir la imagen.");
+    }
+});
